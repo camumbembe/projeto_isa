@@ -28,7 +28,6 @@ else
     else
         echo 'Grupo invalido'
     fi
-#verificar o grupo se está entre professores/alunos/tecnicos
 
 fi
 

@@ -8,9 +8,9 @@ DEPOIS="\033[0m"
 
 NOME=$(hostname)
 MEMORIA=$(free --mega | grep -w "Mem" | awk '{print $2}')
-PLACADEREDE=$(ip link |gawk -F: '$0 !~ "enp|vir|lo|^[^0-9]"{print $2}')
+PLACADEREDE=$(ip link |awk -F: '$0 !~ "enp|vir|lo|^[^0-9]"{print $2}')
 IP=$(ifconfig $PLACADEREDE |grep -w "inet" | awk '{print$2 "/" $4}')
-MAC=$(ifconfig $PLACADEREDE | grep ether | gawk '{print $2}')
+MAC=$(ifconfig $PLACADEREDE | grep ether | awk '{print $2}')
 FABRICANTE=$(lscpu | grep -w "Vendor ID:" | awk '{print $3}')
 VELOCIDADE=$(lscpu | grep -w "CPU MHz:" | awk '{print $3}')
 NNUCLEOS=$(lscpu | grep -w "^CPU(s):" | awk '{print $2}')
