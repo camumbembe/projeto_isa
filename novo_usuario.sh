@@ -11,12 +11,10 @@ if [ -n "$BUSCAUSUARIO" ]
 then 
     echo "Usuário existente, escolha outro login"
 else
-    if [ "$GRUPO" != 'professores' ] 
+    if [ "$GRUPO" = 'professores' ] || [ "$GRUPO" = 'alunos' ] || [ "$GRUPO" = 'tecnicos' ] 
     then
-        echo 'Grupo invalido'
-    else
         echo "Adicionando usuário"
-        adduser --quiet $USUARIO
+        adduser --quiet --gecos "" $USUARIO
         echo "Adicionando ao grupo "$GRUPO""
         usermod -a -G $GRUPO $USUARIO
         cp /home/regras.txt /home/$2
@@ -27,6 +25,8 @@ else
         Seu cargo na instituição é de: "$1"
         A ativação do seu cadastro foi realizada em: $DATE
         Bom trabalho!" > welcome_$2.txt 
+    else
+        echo 'Grupo invalido'
     fi
 #verificar o grupo se está entre professores/alunos/tecnicos
 
